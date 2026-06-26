@@ -727,7 +727,7 @@ function renderCaja(){
   // Solo cheques reales: K=Pendiente Y tienen fecha de cobro
   const cheques=d.clientes.filter(c2=>c2.L==='Mercurio'&&c2.est==='Pendiente'&&c2.fecha&&c2.fecha!==''&&c2.J>0).sort((a,b)=>a.fecha.localeCompare(b.fecha));
   const cobPendientes=d.clientes.filter(c2=>c2.est==='Sin confirmar'||c2.est==='Pendiente').reduce((s,c2)=>s+c2.I,0);
-  const totalChequesOpOp=cheques.reduce((s,c2)=>s+c2.J,0);
+  const totalChequesOp=cheques.reduce((s,c2)=>s+c2.J,0);
   const excedente=saldoNeto-imp+totalChequesOp;
 
   let op=`<div class="section" style="margin-top:12px">
