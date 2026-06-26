@@ -683,6 +683,10 @@ function renderCaja(){
   const cobPendTotal=cobPendAll;
   const soloChequesTotal=totalChequesAll;
 
+  // ---- Pre-calc cobranzas/cheques for sit subtab ----
+  const cobPendTotal=d.clientes.filter(c2=>c2.L==='Mercurio'&&(c2.est==='Pendiente'||c2.est==='Sin confirmar')).reduce((s,c2)=>s+c2.I,0);
+  const soloChequesTotal=d.clientes.filter(c2=>c2.L==='Mercurio'&&c2.est==='Pendiente'&&c2.fecha).reduce((s,c2)=>s+c2.J,0);
+
   // ---- SUBTAB 1: Situación de caja (Excel H49) ----
 
   let sit=`<div class="section" style="margin-top:12px">
@@ -704,10 +708,7 @@ function renderCaja(){
       </div>
     </div>
   </div>
-  // Cobranzas pendientes = Sin confirmar + Pendiente (col I)
-  const cobPendTotal = d.clientes.filter(c2=>c2.L==='Mercurio'&&(c2.est==='Pendiente'||c2.est==='Sin confirmar')).reduce((s,c2)=>s+c2.I,0);
-  // Cheques = solo Pendiente con fecha
-  const soloChequesTotal = d.clientes.filter(c2=>c2.L==='Mercurio'&&c2.est==='Pendiente'&&c2.fecha).reduce((s,c2)=>s+c2.J,0);
+
 
   ${cobPendTotal>0?`<div class="section"><div class="nota">
     <div class="nota-t">Cobranzas pendientes · ${fu(cobPendTotal)}</div>
