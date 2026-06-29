@@ -730,7 +730,10 @@ function renderCaja(){
   const faltante=Math.max(0,imp-saldoNeto);
   const sobrante=Math.max(0,saldoNeto-imp);
   // Solo cheques reales: K=Pendiente Y tienen fecha de cobro
-  const cheques=d.clientes.filter(c2=>c2.L==='Mercurio'&&c2.est==='Pendiente'&&c2.fecha&&c2.fecha!==''&&c2.J>0).sort((a,b)=>a.fecha.localeCompare(b.fecha));
+  const cheques=d.clientes.filter(c2=>c2.L==='Mercurio'&&c2.est==='Pendiente'&&c2.fecha&&c2.fecha!==''&&c2.J>0).sort((a,b)=>{
+      function toSortable(f){if(!f)return'';const p=f.split('/');return p.length===3?p[2]+'/'+p[1]+'/'+p[0]:f;}
+      return toSortable(a.fecha).localeCompare(toSortable(b.fecha));
+    });
   const cobPendientes=d.clientes.filter(c2=>c2.est==='Sin confirmar'||c2.est==='Pendiente').reduce((s,c2)=>s+c2.I,0);
   const totalChequesOp=cheques.reduce((s,c2)=>s+c2.J,0);
   const excedente=saldoNeto-imp+totalChequesOp;
@@ -1127,7 +1130,10 @@ function renderSocios(){
 
     // NIVEL 2+: Acumulando cheques por orden de vencimiento
     const chequesOrds = d.clientes.filter(c=>c.L==='Mercurio'&&c.est==='Pendiente'&&c.fecha&&c.J>0)
-      .sort((a,b)=>a.fecha.localeCompare(b.fecha));
+      .sort((a,b)=>{
+      function toSortable(f){if(!f)return'';const p=f.split('/');return p.length===3?p[2]+'/'+p[1]+'/'+p[0]:f;}
+      return toSortable(a.fecha).localeCompare(toSortable(b.fecha));
+    });
 
     // Fondos para impuestos si saldo no alcanza
     const impPendiente = Math.max(0, impDistr - saldoNetoDistr);
@@ -1218,7 +1224,10 @@ function renderCheques(){
   const faltante=Math.max(0,imp-saldoNeto);
   const sobrante=Math.max(0,saldoNeto-imp);
   // Solo cheques reales: K=Pendiente Y tienen fecha de cobro
-  const cheques=d.clientes.filter(c=>c.L==='Mercurio'&&c.est==='Pendiente'&&c.fecha&&c.fecha!==''&&c.J>0).sort((a,b)=>a.fecha.localeCompare(b.fecha));
+  const cheques=d.clientes.filter(c=>c.L==='Mercurio'&&c.est==='Pendiente'&&c.fecha&&c.fecha!==''&&c.J>0).sort((a,b)=>{
+      function toSortable(f){if(!f)return'';const p=f.split('/');return p.length===3?p[2]+'/'+p[1]+'/'+p[0]:f;}
+      return toSortable(a.fecha).localeCompare(toSortable(b.fecha));
+    });
   const cobPendTotal=d.clientes.filter(c=>c.est==='Sin confirmar'||c.est==='Pendiente').reduce((s,c)=>s+c.I,0);
   const totalCheques=cheques.reduce((s,c)=>s+c.J,0);
   const excedente=saldoNeto-imp+totalCheques;
