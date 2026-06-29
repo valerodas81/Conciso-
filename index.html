@@ -44,13 +44,14 @@ body { font-family: var(--sans); color: var(--text); font-size: 13px; line-heigh
 }
 .header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
 .header-eyebrow { font-size: 9px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 2px; }
-.header-mes { color: var(--ink-blue); font-size: 17px; font-weight: 600; color: #00F; letter-spacing: -.2px; }
+.header-mes { color: var(--ink-blue); font-size: 17px; font-weight: 600; color: #fff; letter-spacing: -.2px; }
 .header-badge { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15); border-radius: 5px; padding: 3px 8px; font-size: 10px; color: rgba(255,255,255,.7); font-family: var(--mono); }
 
 /* NAV TABS */
-.nav { display: flex; gap: 0; border-top: 1px solid rgba(255,255,255,.1); }
-.nav-tab { flex: 1; padding: 7px 4px; text-align: center; font-size: 11px; font-weight: 500; color: rgba(255,255,255,.45); cursor: pointer; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; letter-spacing: .02em; }
-.nav-tab.on { color: #00F; border-bottom-color: #00F; }
+.nav { display: flex; gap: 0; border-top: 1px solid var(--border); background: #fff; }
+.nav-tab { flex: 1; padding: 7px 4px; text-align: center; font-size: 11px; font-weight: 500; color: #2a5a8a; cursor: pointer; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; letter-spacing: .02em; }
+.nav-tab.on { color: #0096d6; border-bottom-color: #0096d6; font-weight: 600; }
+.nav-tab:hover:not(.on) { color: #0096d6; }
 
 /* MES SELECTOR */
 .mes-scroll { display: flex; gap: 6px; overflow-x: auto; padding: 8px 12px; scrollbar-width: none; background: var(--bg); border-bottom: 3px solid #0096d6; }
